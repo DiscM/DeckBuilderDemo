@@ -8,11 +8,6 @@ const ARROW_OFFSET := 5
 @onready var arrow: Sprite2D = $Arrow
 @onready var stats_ui: StatsUI = $StatsUI as StatsUI
 
-#func _ready() -> void:
-	#await get_tree().create_timer(2).timeout
-	#take_damage(6)
-	#stats.block += 8
-
 func set_enemy_stats(value: Stats) -> void:
 	stats = value.create_instance()
 	
@@ -36,7 +31,8 @@ func update_enemy() -> void:
 	
 func take_damage(damage: int) -> void:
 	if stats.health <= 0:
-		return
+		return 
+	stats.take_damage(damage)
 	if stats.health <= 0:
 		queue_free()
 		
