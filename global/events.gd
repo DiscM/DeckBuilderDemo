@@ -8,3 +8,5 @@ signal card_played(card: Card)
 
 signal card_tooltip_requested(card: Card)
 signal tooltip_hide_requested
+
+signal player_hand_drawn
