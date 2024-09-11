@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://de6qx47vvgv6k"]
+[gd_scene load_steps=14 format=3 uid="uid://de6qx47vvgv6k"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_7d2ld"]
 [ext_resource type="Script" path="res://scenes/ui/hand.gd" id="2_5dwss"]
@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://ddaegkk5hldds" path="res://enemy/enemy.tscn" id="2_sious"]
 [ext_resource type="PackedScene" uid="uid://dwushyddhxu2c" path="res://scenes/card_target_selector/card_target_selector.tscn" id="3_enct2"]
 [ext_resource type="PackedScene" uid="uid://xkiv4x25b6e7" path="res://scenes/player/player.tscn" id="3_g0wpf"]
-[ext_resource type="Resource" uid="uid://crk5q8ex257dh" path="res://enemies/crab/test_enemy.tres" id="3_ilmp8"]
+[ext_resource type="Resource" uid="uid://5wt672ahsdjo" path="res://enemies/crab/crab_enemy.tres" id="3_obayb"]
 [ext_resource type="Resource" uid="uid://c3o8806jhmoil" path="res://characters/warrior/cards/warrior_axe_attack.tres" id="4_3e6gw"]
 [ext_resource type="Resource" uid="uid://dlq87gf4ea5pp" path="res://characters/warrior/warrior.tres" id="4_fi5f7"]
 [ext_resource type="Resource" uid="uid://d2br161qdylf4" path="res://characters/warrior/cards/warrior_block.tres" id="5_guabc"]
 [ext_resource type="PackedScene" uid="uid://c0qo682o4u1i4" path="res://scenes/ui/mana_ui.tscn" id="11_vayfo"]
+[ext_resource type="PackedScene" uid="uid://dy0rmvmbs0rxr" path="res://scenes/ui/tooltip.tscn" id="12_m46oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jlfh"]
 size = Vector2(256, 100)
@@ -33,7 +34,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.113725)
 
 [node name="Enemy" parent="." instance=ExtResource("2_sious")]
 position = Vector2(195, 67)
-stats = ExtResource("3_ilmp8")
+stats = ExtResource("3_obayb")
 
 [node name="Player" parent="." instance=ExtResource("3_g0wpf")]
 position = Vector2(46, 68)
@@ -76,3 +77,7 @@ char_stats = ExtResource("4_fi5f7")
 
 [node name="ManaUI" parent="BattleUI" instance=ExtResource("11_vayfo")]
 char_stats = ExtResource("4_fi5f7")
+
+[node name="Tooltip" parent="BattleUI" instance=ExtResource("12_m46oa")]
+offset_top = 4.0
+offset_bottom = 40.0
