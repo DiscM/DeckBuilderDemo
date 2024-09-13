@@ -1,10 +1,54 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://lr1qumbpcr6v"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://lr1qumbpcr6v"]
 
 [ext_resource type="StyleBox" uid="uid://b16kt0d0gto5s" path="res://scenes/card_UI/card_base_stylebox.tres" id="1_m12jf"]
 [ext_resource type="FontFile" uid="uid://dskmdk146n4rq" path="res://art/pixel_rpg.ttf" id="1_r4evu"]
+[ext_resource type="StyleBox" uid="uid://rrnjdb2agu8b" path="res://scenes/card_UI/card_hover_stylebox.tres" id="2_dsk3k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k86nq"]
+bg_color = Color(0.890196, 0.47451, 0.0823529, 0.270588)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.379005, 0.914833, 0.703309, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aabgo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1ast"]
+bg_color = Color(0.944551, 0.409918, 0.303992, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.539407, 0.448401, 0.0928805, 1)
+border_blend = true
 
 [resource]
 default_font = ExtResource("1_r4evu")
 default_font_size = 6
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_disabled_color = Color(0, 0, 0, 1)
+Button/colors/icon_focus_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_normal_color = Color(0, 0, 0, 1)
+Button/colors/icon_pressed_color = Color(0, 0, 0, 1)
+Button/constants/h_separation = 0
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 6
+Button/fonts/font = ExtResource("1_r4evu")
+Button/styles/disabled = SubResource("StyleBoxFlat_k86nq")
+Button/styles/focus = SubResource("StyleBoxEmpty_aabgo")
+Button/styles/hover = ExtResource("2_dsk3k")
+Button/styles/normal = ExtResource("1_m12jf")
+Button/styles/pressed = SubResource("StyleBoxFlat_r1ast")
 Panel/styles/panel = null
 PanelContainer/styles/panel = ExtResource("1_m12jf")
