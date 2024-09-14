@@ -15,7 +15,7 @@ func draw_card() ->Card:
 	
 func add_card(card: Card) -> void:
 	cards.append(card)
-	card_pile_size_changed.emit(card.size())
+	card_pile_size_changed.emit(cards.size())
 	
 func shuffle() -> void:
 	cards.shuffle()
