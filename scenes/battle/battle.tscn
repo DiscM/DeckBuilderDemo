@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://de6qx47vvgv6k"]
+[gd_scene load_steps=16 format=3 uid="uid://de6qx47vvgv6k"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_7d2ld"]
 [ext_resource type="Script" path="res://scenes/battle/battle.gd" id="1_148d4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xkiv4x25b6e7" path="res://scenes/player/player.tscn" id="3_g0wpf"]
 [ext_resource type="Resource" uid="uid://5wt672ahsdjo" path="res://enemies/crab/crab_enemy.tres" id="3_obayb"]
 [ext_resource type="Resource" uid="uid://dlq87gf4ea5pp" path="res://characters/warrior/warrior.tres" id="4_fi5f7"]
+[ext_resource type="Script" path="res://enemy/enemy_handler.gd" id="4_jyl33"]
 [ext_resource type="Script" path="res://scenes/ui/battle_ui.gd" id="7_mgojg"]
 [ext_resource type="Script" path="res://scenes/player/player_handler.gd" id="8_6bcpd"]
 [ext_resource type="PackedScene" uid="uid://c0qo682o4u1i4" path="res://scenes/ui/mana_ui.tscn" id="11_vayfo"]
@@ -35,7 +36,10 @@ position = Vector2(128, 50)
 shape = SubResource("RectangleShape2D_5jlfh")
 debug_color = Color(0, 0.6, 0.701961, 0.113725)
 
-[node name="Enemy" parent="." instance=ExtResource("2_sious")]
+[node name="EnemyHandler" type="Node2D" parent="."]
+script = ExtResource("4_jyl33")
+
+[node name="Enemy" parent="EnemyHandler" instance=ExtResource("2_sious")]
 position = Vector2(195, 67)
 stats = ExtResource("3_obayb")
 
