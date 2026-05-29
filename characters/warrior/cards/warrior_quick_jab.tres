@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://art/tile_0109.png" id="1_9f7p2"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_quick_jab.gd" id="2_1f3nv"]
+
+[resource]
+script = ExtResource("2_1f3nv")
+id = "warrior_quick_jab"
+type = 0
+target = 1
+cost = 0
+icon = ExtResource("1_9f7p2")
+tooltip_text = "[center]Deal [color=\"ff0000\"]3 [/color]damage and gain [color=\"66ff66\"]1 [/color]momentum. Shift into [color=\"ff704d\"]Offense[/color].[/center]"

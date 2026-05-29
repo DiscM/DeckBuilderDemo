@@ -1,14 +1,22 @@
 ## Deck Builder Demo
 
 A small turn-based deck builder prototype inspired by games like *Slay the Spire*.  
-This project is a single-battle demo focused on core combat flow, card interactions, and reusable Godot scene structure.
+This project is a focused battle demo with momentum- and stance-based card synergies, multi-enemy encounters, and reusable Godot scene structure.
+
+Recent feature notes are tracked in [CHANGELOG.md](CHANGELOG.md).
 
 ### Screenshots
 
-| Opening battle | Targeting | Resolved play |
+| Opening battle | Flow / Offense | Guard block |
 | --- | --- | --- |
-| ![Opening battle screenshot](README_assets/opening-battle.png) | ![Targeting screenshot](README_assets/attack-targeting.png) | ![Resolved play screenshot](README_assets/attack-resolved.png) |
-| Starting hand, mana, and end-turn controls. | A card being aimed at a target. | The attack has resolved and the battle state has updated. |
+| ![Current opening battle screenshot](README_assets/opening-battle.png) | ![Current flow and offense screenshot](README_assets/stance-flow.png) | ![Current guard screenshot](README_assets/stance-guard.png) |
+| Current two-enemy opening board with the stance HUD, hand, and end-turn controls. | A Flow turn into Offense, showing how stance changes momentum and attack pressure. | Guard stance pushing block higher before the enemy phase. |
+
+### Battle Result
+
+![Current victory screenshot](README_assets/victory.png)
+
+The battle now ends with an explicit victory overlay and restart button, which gives the demo a clean finish state.
 
 ### Game Mechanics
 
@@ -19,10 +27,13 @@ The battle loop is built around a few simple systems:
 * **Mana economy** - each turn restores mana, and every card has a cost.
 * **Block and health** - block absorbs damage first, while health ends the run when it reaches zero.
 * **Card targeting** - cards can target the player, one enemy, all enemies, or everyone depending on their card type.
+* **Momentum combo system** - several new cards build momentum, convert it into burst damage, and reward sequencing.
+* **Stance system** - cards shift the player between Offense, Guard, and Flow, which changes damage, block, momentum, and draw bonuses.
+* **Multi-enemy encounters** - the demo now includes more than one enemy so area attacks and split decisions matter.
 * **Enemy intent** - enemies pick actions from a weighted action pool and can switch to conditional moves when their state changes.
 * **Card state machine** - card UI uses a state machine for hovering, clicking, dragging, aiming, and releasing.
 
-The current demo is intentionally scoped to one battle so the combat systems can be tested and refined before expanding into a larger game loop.
+The current demo is still a compact battle slice, but the combat loop now has enough room for different deck lines, enemy patterns, and end-state polish.
 
 ### Tech Stack
 
@@ -50,3 +61,4 @@ This is a prototype and not a full roguelike yet. The focus is on:
 * testing node-based architecture
 * iterating on card and enemy behavior
 * keeping the demo small enough to debug quickly
+* expanding the encounter and card pool in a way that still fits the existing combat shell

@@ -31,19 +31,28 @@ func get_first_conditional_action() -> EnemyAction:
 
 func get_chance_based_action() -> EnemyAction:
 	var action: EnemyAction
-	var roll := randf_range(0.0, total_weight)
+	if total_weight <= 0.0:
+		return null
+
+	var roll := randf() * total_weight
 	
 	for child in get_children():
 		action = child as EnemyAction
 		if not action or action.type != EnemyAction.Type.CHANCE_BASED:
 			continue
-		if action.accumulated_weight > roll:
+		if action.accumulated_weight >= roll:
+			return action
+			
+	for child in get_children():
+		action = child as EnemyAction
+		if action and action.type == EnemyAction.Type.CHANCE_BASED:
 			return action
 			
 	return null
-
+	
 func setup_chances() -> void:
 	var action: EnemyAction
+	total_weight = 0.0
 	
 	for child in get_children():
 		action = child as EnemyAction

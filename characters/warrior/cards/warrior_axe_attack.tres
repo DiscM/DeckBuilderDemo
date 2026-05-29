@@ -10,4 +10,4 @@ type = 0
 target = 1
 cost = 1
 icon = ExtResource("1_q8540")
-tooltip_text = "[center]Deal [color=\"ff0000\"]6 [/color]damage.[/center]"
+tooltip_text = "[center]Deal [color=\"ff0000\"]6 [/color]damage. In [color=\"ff704d\"]Offense[/color], deal +2 more.[/center]"

@@ -21,7 +21,7 @@ const HOVER_STYLEBOX := preload("res://scenes/card_UI/card_hover_stylebox.tres")
 
 var parent: Control
 var tween: Tween
-var playable := true : set = _set_playable
+var playable := false : set = _set_playable
 var disabled := false
 
 func _ready() -> void:
@@ -41,12 +41,16 @@ func animate_to_position(new_position: Vector2, duration: float) ->void:
 func _on_gui_input(event: InputEvent) -> void:
 	card_state_machine.on_gui_input(event)
 	
-func play() -> void:
-	if not card:
-		return
-	
-	card.play(targets, char_stats)
-	queue_free()
+func play() -> bool:
+	if not card or not char_stats:
+		return false
+
+	if card.play(targets, char_stats, self):
+		char_stats.discard.add_card(card)
+		queue_free()
+		return true
+
+	return false
 
 func _on_mouse_entered() -> void:
 	card_state_machine.on_mouse_entered()
@@ -61,6 +65,8 @@ func _set_card(value: Card) -> void:
 	card = value
 	cost.text = str(card.cost)
 	icon.texture = card.icon
+	if char_stats:
+		_on_char_stats_changed()
 
 func _set_playable(value: bool) -> void:
 	playable = value
@@ -72,8 +78,13 @@ func _set_playable(value: bool) -> void:
 		icon.modulate = Color(1, 1, 1, 1)
 		
 func _set_char_stats(value: CharacterStats) -> void:
+	if not value:
+		return
+
 	char_stats = value
-	char_stats.stats_changed.connect(_on_char_stats_changed)
+	if not char_stats.stats_changed.is_connected(_on_char_stats_changed):
+		char_stats.stats_changed.connect(_on_char_stats_changed)
+	_on_char_stats_changed()
 	
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	if not targets.has(area):
@@ -90,7 +101,9 @@ func _on_card_drag_or_aiming_started(used_card: CardUI) -> void:
 	
 func _on_card_drag_or_aiming_ended(_card: CardUI) -> void:
 	disabled = false
-	self.playable = char_stats.can_play_card(card)
+	if char_stats and card:
+		self.playable = char_stats.can_play_card(card)
 
 func _on_char_stats_changed() -> void:
-	self.playable = char_stats.can_play_card(card)
+	if char_stats and card:
+		self.playable = char_stats.can_play_card(card)

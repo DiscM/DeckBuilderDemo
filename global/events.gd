@@ -17,3 +17,6 @@ signal player_died
 #Enemy Events
 signal enemy_action_completed(enemy: Enemy)
 signal enemy_turn_ended
+
+#Battle Events
+signal battle_ended(victory: bool)

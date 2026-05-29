@@ -6,6 +6,10 @@ extends Node2D
 @onready var player: Player = $Player as Player
 @onready var enemy_handler: EnemyHandler = $EnemyHandler as EnemyHandler
 
+enum BattleState {ACTIVE, VICTORY, DEFEAT}
+
+var battle_state := BattleState.ACTIVE
+
 func _ready() -> void:
 	var new_stats: CharacterStats = char_stats.create_instance()
 	battle_ui.char_stats = new_stats
@@ -18,19 +22,39 @@ func _ready() -> void:
 	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 	Events.player_died.connect(_on_player_died)
 	
+	battle_ui.hide_battle_end()
 	start_battle(new_stats)
 	
 func start_battle(stats: CharacterStats) -> void:
+	battle_state = BattleState.ACTIVE
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_battle(stats)
 
 func _on_enemies_child_order_changed() -> void:
-	if enemy_handler.get_child_count() == 0:
-		print("Victory!")
+	call_deferred("_check_for_victory")
 		
 func _on_enemy_turn_ended() -> void:
+	if battle_state != BattleState.ACTIVE:
+		return
 	player_handler.start_turn()
 	enemy_handler.reset_enemy_actions()
 
 func _on_player_died() -> void:
-	print("Game Over")
+	_end_battle(false)
+
+func _check_for_victory() -> void:
+	if battle_state != BattleState.ACTIVE:
+		return
+	if enemy_handler.get_child_count() == 0:
+		_end_battle(true)
+
+func _end_battle(victory: bool) -> void:
+	if battle_state != BattleState.ACTIVE:
+		return
+
+	battle_state = BattleState.VICTORY if victory else BattleState.DEFEAT
+	if victory:
+		battle_ui.show_victory()
+	else:
+		battle_ui.show_defeat()
+	Events.battle_ended.emit(victory)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://de6qx47vvgv6k"]
+[gd_scene load_steps=17 format=3 uid="uid://de6qx47vvgv6k"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_7d2ld"]
 [ext_resource type="Script" path="res://scenes/battle/battle.gd" id="1_148d4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://5wt672ahsdjo" path="res://enemies/crab/crab_enemy.tres" id="3_obayb"]
 [ext_resource type="Resource" uid="uid://dlq87gf4ea5pp" path="res://characters/warrior/warrior.tres" id="4_fi5f7"]
 [ext_resource type="Script" path="res://enemy/enemy_handler.gd" id="4_jyl33"]
+[ext_resource type="Resource" path="res://enemies/crab/shield_crab_enemy.tres" id="5_2q8dx"]
 [ext_resource type="Script" path="res://scenes/ui/battle_ui.gd" id="7_mgojg"]
 [ext_resource type="Script" path="res://scenes/player/player_handler.gd" id="8_6bcpd"]
 [ext_resource type="PackedScene" uid="uid://c0qo682o4u1i4" path="res://scenes/ui/mana_ui.tscn" id="11_vayfo"]
@@ -40,8 +41,12 @@ debug_color = Color(0, 0.6, 0.701961, 0.113725)
 script = ExtResource("4_jyl33")
 
 [node name="Enemy" parent="EnemyHandler" instance=ExtResource("2_sious")]
-position = Vector2(195, 67)
+position = Vector2(181, 67)
 stats = ExtResource("3_obayb")
+
+[node name="ShieldEnemy" parent="EnemyHandler" instance=ExtResource("2_sious")]
+position = Vector2(221, 67)
+stats = ExtResource("5_2q8dx")
 
 [node name="Player" parent="." instance=ExtResource("3_g0wpf")]
 position = Vector2(46, 68)
@@ -95,3 +100,41 @@ grow_vertical = 0
 theme = ExtResource("13_b20u2")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "End Turn"
+
+[node name="BattleEndPanel" type="PanelContainer" parent="BattleUI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -26.0
+offset_right = 52.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_b20u2")
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/BattleEndPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleUI/BattleEndPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BattleEndLabel" type="Label" parent="BattleUI/BattleEndPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="BattleUI/BattleEndPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"

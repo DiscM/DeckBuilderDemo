@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://art/tile_0116.png" id="1_1j7m8"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_finisher.gd" id="2_2n8c1"]
+
+[resource]
+script = ExtResource("2_2n8c1")
+id = "warrior_finisher"
+type = 0
+target = 1
+cost = 2
+icon = ExtResource("1_1j7m8")
+tooltip_text = "[center]Deal [color=\"ff0000\"]4 [/color]damage + [color=\"66ff66\"]1 [/color]per momentum. In [color=\"ff704d\"]Offense[/color], deal +2 more. Then lose all momentum.[/center]"

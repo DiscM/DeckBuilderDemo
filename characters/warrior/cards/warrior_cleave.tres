@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://art/tile_0114.png" id="1_7uyc6"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_cleave.gd" id="2_9zv0a"]
+
+[resource]
+script = ExtResource("2_9zv0a")
+id = "warrior_cleave"
+type = 0
+target = 2
+cost = 1
+icon = ExtResource("1_7uyc6")
+tooltip_text = "[center]Deal [color=\"ff0000\"]3 [/color]damage to all enemies and gain [color=\"66ff66\"]1 [/color]momentum per enemy hit. Shift into [color=\"ff704d\"]Offense[/color].[/center]"

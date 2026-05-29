@@ -16,12 +16,34 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
 
 func is_single_targeted() -> bool:
 	return target == Target.SINGLE_ENEMY
-	
-func _get_targets(targets: Array[Node]) -> Array[Node]:
-	if not targets:
-		return[]
-	var tree := targets[0].get_tree()
-	
+
+func play(targets: Array[Node], char_stats: CharacterStats, origin: Node = null) -> bool:
+	if not char_stats or not char_stats.can_play_card(self):
+		return false
+
+	var resolved_targets := _get_resolved_targets(targets, origin)
+	if resolved_targets.is_empty():
+		return false
+
+	Events.card_played.emit(self)
+	char_stats.mana -= cost
+
+	apply_effects(resolved_targets)
+	return true
+
+func _get_resolved_targets(targets: Array[Node], origin: Node = null) -> Array[Node]:
+	if is_single_targeted():
+		return targets
+
+	var tree: SceneTree
+	if origin:
+		tree = origin.get_tree()
+	elif not targets.is_empty():
+		tree = targets[0].get_tree()
+
+	if not tree:
+		return []
+
 	match target:
 		Target.SELF:
 			return tree.get_nodes_in_group("player")
@@ -30,16 +52,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 		Target.EVERYONE:
 			return tree.get_nodes_in_group("player") + tree.get_nodes_in_group("enemies")
 		_:
-			return []
+			return targets
 
-func play(targets: Array[Node], char_stats: CharacterStats) -> void:
-	Events.card_played.emit(self)
-	char_stats.mana -= cost
-	
-	if is_single_targeted():
-		apply_effects(targets)
-	else:
-		apply_effects(_get_targets(targets))
-		
 func apply_effects(_targets: Array[Node]) -> void:
 	pass

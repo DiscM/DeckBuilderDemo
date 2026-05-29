@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://art/tile_0106.png" id="1_8x2f7"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_tactical_breath.gd" id="2_4f0q1"]
+
+[resource]
+script = ExtResource("2_4f0q1")
+id = "warrior_tactical_breath"
+type = 2
+target = 0
+cost = 0
+icon = ExtResource("1_8x2f7")
+tooltip_text = "[center]Draw 1 card and gain [color=\"66ff66\"]1 [/color]momentum. In [color=\"66ff99\"]Flow[/color], draw and gain +1 more. Shift into [color=\"66ff99\"]Flow[/color].[/center]"
