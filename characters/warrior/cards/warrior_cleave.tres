@@ -10,4 +10,5 @@ type = 0
 target = 2
 cost = 1
 icon = ExtResource("1_7uyc6")
-tooltip_text = "[center]Deal [color=\"ff0000\"]3 [/color]damage to all enemies and gain [color=\"66ff66\"]1 [/color]momentum per enemy hit. Shift into [color=\"ff704d\"]Offense[/color].[/center]"
+combo_tags = PackedStringArray("setup", "offense")
+tooltip_text = "[center]Deal [color=\"ff0000\"]3 [/color]damage to all enemies and gain [color=\"66ff66\"]1 [/color]momentum per enemy hit. Shift into [color=\"8b1f1f\"]Offense[/color].[/center]"

@@ -10,4 +10,5 @@ type = 1
 target = 0
 cost = 1
 icon = ExtResource("1_8b9k4")
-tooltip_text = "[center]Gain [color=\"0044ff\"]4 [/color]block and [color=\"66ff66\"]2 [/color]momentum. Shift into [color=\"66a3ff\"]Guard[/color].[/center]"
+combo_tags = PackedStringArray("setup", "guard")
+tooltip_text = "[center]Gain [color=\"0044ff\"]4 [/color]block and [color=\"66ff66\"]2 [/color]momentum. Shift into [color=\"1f3f8b\"]Guard[/color].[/center]"

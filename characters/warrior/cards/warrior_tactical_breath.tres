@@ -10,4 +10,5 @@ type = 2
 target = 0
 cost = 0
 icon = ExtResource("1_8x2f7")
+combo_tags = PackedStringArray("setup", "flow")
 tooltip_text = "[center]Draw 1 card and gain [color=\"66ff66\"]1 [/color]momentum. In [color=\"66ff99\"]Flow[/color], draw and gain +1 more. Shift into [color=\"66ff99\"]Flow[/color].[/center]"

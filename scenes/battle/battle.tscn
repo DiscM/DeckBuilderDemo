@@ -82,7 +82,7 @@ char_stats = ExtResource("4_fi5f7")
 
 [node name="Tooltip" parent="BattleUI" instance=ExtResource("12_m46oa")]
 offset_top = 4.0
-offset_bottom = 40.0
+offset_bottom = 72.0
 
 [node name="EndTurnButton" type="Button" parent="BattleUI"]
 unique_name_in_owner = true

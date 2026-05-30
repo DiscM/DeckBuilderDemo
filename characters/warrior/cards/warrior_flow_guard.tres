@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://art/tile_0128.png" id="1_2f0yx"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_flow_guard.gd" id="2_8z9m1"]
+
+[resource]
+script = ExtResource("2_8z9m1")
+id = "warrior_flow_guard"
+type = 1
+target = 0
+cost = 1
+icon = ExtResource("1_2f0yx")
+combo_tags = PackedStringArray("flow", "finisher")
+tooltip_text = "[center]Gain [color=\"0044ff\"]4 [/color]block + [color=\"66ff66\"]1 [/color]per momentum. If in [color=\"66ff99\"]Flow[/color], gain +2 more block and draw 1 card. Shift into [color=\"66ff99\"]Flow[/color].[/center]"

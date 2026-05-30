@@ -12,6 +12,10 @@ var is_visible := false
 func _ready() -> void:
 	Events.card_tooltip_requested.connect(show_tooltip)
 	Events.tooltip_hide_requested.connect(hide_tooltip)
+	tooltip_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tooltip_text_label.fit_content = true
+	tooltip_text_label.scroll_active = false
+	tooltip_text_label.custom_minimum_size = Vector2(84, 0)
 	modulate = Color.TRANSPARENT
 	hide()
 	

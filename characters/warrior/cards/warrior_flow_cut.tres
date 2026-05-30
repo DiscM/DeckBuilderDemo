@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://art/tile_0130.png" id="1_6tq8v"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_flow_cut.gd" id="2_1w8yq"]
+
+[resource]
+script = ExtResource("2_1w8yq")
+id = "warrior_flow_cut"
+type = 0
+target = 1
+cost = 1
+icon = ExtResource("1_6tq8v")
+combo_tags = PackedStringArray("flow", "finisher")
+tooltip_text = "[center]Deal [color=\"ff0000\"]3 [/color]damage + [color=\"66ff66\"]1 [/color]per momentum. If in [color=\"66ff99\"]Flow[/color], deal +2 more and draw 1 card. Shift into [color=\"66ff99\"]Flow[/color].[/center]"

@@ -67,6 +67,24 @@ func get_momentum_bonus() -> int:
 		return 1
 	return 0
 
+func get_combo_hint_tags() -> PackedStringArray:
+	var tags := PackedStringArray()
+
+	match stance:
+		Stance.OFFENSE:
+			tags.append("offense")
+		Stance.GUARD:
+			tags.append("guard")
+		Stance.FLOW:
+			tags.append("flow")
+		_:
+			tags.append("setup")
+
+	if momentum > 0:
+		tags.append("finisher")
+
+	return tags
+
 func get_draw_bonus() -> int:
 	if stance == Stance.FLOW:
 		return 1

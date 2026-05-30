@@ -10,4 +10,5 @@ type = 0
 target = 1
 cost = 1
 icon = ExtResource("1_q8540")
-tooltip_text = "[center]Deal [color=\"ff0000\"]6 [/color]damage. In [color=\"ff704d\"]Offense[/color], deal +2 more.[/center]"
+combo_tags = PackedStringArray("offense")
+tooltip_text = "[center]Deal [color=\"ff0000\"]6 [/color]damage. In [color=\"8b1f1f\"]Offense[/color], deal +2 more.[/center]"

@@ -6,6 +6,7 @@ signal  reparent_requested(which_card_ui: CardUI)
 const BASE_STYLEBOX := preload("res://scenes/card_UI/card_base_stylebox.tres")
 const DRAG_STYLEBOX := preload("res://scenes/card_UI/card_dragging_stylebox.tres")
 const HOVER_STYLEBOX := preload("res://scenes/card_UI/card_hover_stylebox.tres")
+const COMBO_STYLEBOX := preload("res://scenes/card_UI/card_combo_stylebox.tres")
 
 @export var card: Card : set = _set_card
 @export var char_stats : CharacterStats : set = _set_char_stats
@@ -23,6 +24,9 @@ var parent: Control
 var tween: Tween
 var playable := false : set = _set_playable
 var disabled := false
+var is_hovered := false
+var is_held := false
+var combo_hint := false : set = _set_combo_hint
 
 func _ready() -> void:
 	Events.card_aim_started.connect(_on_card_drag_or_aiming_started)
@@ -67,6 +71,7 @@ func _set_card(value: Card) -> void:
 	icon.texture = card.icon
 	if char_stats:
 		_on_char_stats_changed()
+	refresh_panel_style()
 
 func _set_playable(value: bool) -> void:
 	playable = value
@@ -76,7 +81,11 @@ func _set_playable(value: bool) -> void:
 	else:
 		cost.remove_theme_color_override("font_color")
 		icon.modulate = Color(1, 1, 1, 1)
-		
+
+func _set_combo_hint(value: bool) -> void:
+	combo_hint = value
+	refresh_panel_style()
+
 func _set_char_stats(value: CharacterStats) -> void:
 	if not value:
 		return
@@ -85,6 +94,28 @@ func _set_char_stats(value: CharacterStats) -> void:
 	if not char_stats.stats_changed.is_connected(_on_char_stats_changed):
 		char_stats.stats_changed.connect(_on_char_stats_changed)
 	_on_char_stats_changed()
+	refresh_panel_style()
+
+func set_hovered(value: bool) -> void:
+	is_hovered = value
+	refresh_panel_style()
+
+func set_held(value: bool) -> void:
+	is_held = value
+	refresh_panel_style()
+
+func refresh_panel_style() -> void:
+	if not is_node_ready():
+		return
+
+	if is_held:
+		panel.set("theme_override_styles/panel", DRAG_STYLEBOX)
+	elif is_hovered:
+		panel.set("theme_override_styles/panel", HOVER_STYLEBOX)
+	elif combo_hint:
+		panel.set("theme_override_styles/panel", COMBO_STYLEBOX)
+	else:
+		panel.set("theme_override_styles/panel", BASE_STYLEBOX)
 	
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	if not targets.has(area):
